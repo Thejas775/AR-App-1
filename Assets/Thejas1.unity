@@ -394,7 +394,7 @@ MonoBehaviour:
   launchSimultaneousHandsControllersOnStartup: 0
   isInsightPassthroughEnabled: 1
   shouldBoundaryVisibilityBeSuppressed: 0
-  requestBodyTrackingPermissionOnStartup: 0
+  requestBodyTrackingPermissionOnStartup: 1
   requestFaceTrackingPermissionOnStartup: 0
   requestEyeTrackingPermissionOnStartup: 0
   requestScenePermissionOnStartup: 0
@@ -410,7 +410,7 @@ MonoBehaviour:
   LateControllerUpdate: 1
   LateLatching: 0
   controllerDrivenHandPosesType: 0
-  SimultaneousHandsAndControllersEnabled: 1
+  SimultaneousHandsAndControllersEnabled: 0
   _readOnlyWideMotionModeHandPosesEnabled: 0
   wideMotionModeHandPosesEnabled: 0
   _readOnlyFastMotionModeHandPosesEnabled: 0
@@ -631,6 +631,7 @@ Transform:
   - {fileID: 826278782}
   - {fileID: 1520225768}
   - {fileID: 1068534613}
+  - {fileID: 2094603246}
   m_Father: {fileID: 252504953}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &332660610
@@ -646,8 +647,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::OmnitrixActivator
   animator: {fileID: 761113979}
-  triggerName: Activate
-  ignoreWhilePlaying: 1
+  openTrigger: Open
+  closeTrigger: Close
+  palm: {fileID: 1637025680}
+  watchHead: {fileID: 1383016495}
+  slamDistance: 0.06
+  rearmDistance: 0.15
+  transformSound: {fileID: 723520934}
 --- !u!1 &345170807
 GameObject:
   m_ObjectHideFlags: 0
@@ -1014,6 +1020,135 @@ SphereCollider:
   serializedVersion: 3
   m_Radius: 0.018
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!1 &723520932
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 723520933}
+  - component: {fileID: 723520934}
+  m_Layer: 0
+  m_Name: TransformAudio
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &723520933
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 723520932}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 2107500114}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!82 &723520934
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 723520932}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 0}
+  m_Resource: {fileID: 8300000, guid: 1fd64060cb7da7542853162bf4b17baf, type: 3}
+  m_PlayOnAwake: 0
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!95 &761113979
 Animator:
   serializedVersion: 7
@@ -1746,8 +1881,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::OmnitrixFollower
   wrist: {fileID: 550557674}
+  rawHandSource: {fileID: 1634115256}
   positionOffset: {x: 0, y: 0, z: 0}
   rotationOffset: {x: 0, y: 0, z: 0}
+  smoothing: 25
+--- !u!4 &1383016495 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: -4933033538689879408, guid: 8c5d8fd2288713246a81abb83d5ae264, type: 3}
+  m_PrefabInstance: {fileID: 2107500113}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1418518291
 GameObject:
   m_ObjectHideFlags: 0
@@ -1872,6 +2014,22 @@ Transform:
   m_Children: []
   m_Father: {fileID: 567281284}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1634115256 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1610028817, guid: 0a7d2469f24041c4284c66706f84c45e, type: 3}
+  m_PrefabInstance: {fileID: 1303539842}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7daff26e66096cd49a253ca3ab592c03, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!4 &1637025680 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 2351269329149807314, guid: 0a7d2469f24041c4284c66706f84c45e, type: 3}
+  m_PrefabInstance: {fileID: 1303539842}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1652824502
 GameObject:
   m_ObjectHideFlags: 0
@@ -2112,6 +2270,87 @@ Transform:
   - {fileID: 2107500114}
   m_Father: {fileID: 1355081825}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &2094603245
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2094603246}
+  - component: {fileID: 2094603249}
+  - component: {fileID: 2094603248}
+  - component: {fileID: 2094603247}
+  m_Layer: 0
+  m_Name: BodyTracking
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2094603246
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2094603245}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 292579266}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2094603247
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2094603245}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 74cfb4ee6663d124cb1df921fbc8edaa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::BodySkeletonVisualizer
+  material: {fileID: 2100000, guid: 01b08f706abfee9408e8a3f503c960bc, type: 2}
+  color: {r: 0.2, g: 1, b: 0.35, a: 1}
+  jointRadius: 0.018
+  boneWidth: 0.008
+  logWhenTrackingStarts: 1
+--- !u!114 &2094603248
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2094603245}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2609c54f376cffc4da1ab9401cc1a36f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Oculus.VR::OVRSkeleton
+  _skeletonType: 2
+  _updateRootPose: 1
+  _updateRootScale: 1
+  _enablePhysicsCapsules: 0
+  _applyBoneTranslations: 1
+--- !u!114 &2094603249
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2094603245}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 274835e4e2feae04b87f0d000555f8a4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Oculus.VR::OVRBody
+  _providedSkeletonType: 0
 --- !u!1001 &2107500113
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2138,11 +2377,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 8c5d8fd2288713246a81abb83d5ae264, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.035
+      value: 0.052221317
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 8c5d8fd2288713246a81abb83d5ae264, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -0.03
+      value: -0.03202177
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 8c5d8fd2288713246a81abb83d5ae264, type: 3}
       propertyPath: m_LocalRotation.w
@@ -2186,6 +2425,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: -8679921383154817045, guid: 8c5d8fd2288713246a81abb83d5ae264, type: 3}
       insertIndex: 0
       addedObject: {fileID: 605951045}
+    - targetCorrespondingSourceObject: {fileID: -8679921383154817045, guid: 8c5d8fd2288713246a81abb83d5ae264, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 723520933}
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 8c5d8fd2288713246a81abb83d5ae264, type: 3}
       insertIndex: -1
@@ -2290,7 +2532,7 @@ SphereCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Radius: 0.00229
+  m_Radius: 0.0025000272
   m_Center: {x: -2.2663409e-10, y: 0.000000006387611, z: 0.0005544538}
 --- !u!114 &2107500120
 MonoBehaviour:
@@ -2355,7 +2597,7 @@ SphereCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Radius: 0.00229
+  m_Radius: 0.0025000034
   m_Center: {x: -1.9461854e-10, y: 0.000000005425029, z: 0.00055445754}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
